@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Essential Script and Link -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Essential Scrip and link -->
+
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+	<!-- Style for selectbox -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+
+
+	<title>Convert Image to Text</title>
+</head>
+<body>
+	<div class="container-fluid main">
+		<div class="row logorow">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1 class="logo">CIT</h1>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<hr class="line">
+		{% if msg %}
+			<div class="alertbox">
+				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+				{{msg}}
+			</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-md-11">
+				<h2 class="header1">
+					Convert Image to Text Using OCR
+				</h2>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+        <form action="/output" method="POST" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="imgcontent">
+						<div class="imgbox">
+							<input type="file" name="img" id="file-5" class="inputfile inputfile-5"
+							data-multiple-caption="{count} files selected"  onchange="loadFile(event)"
+							multiple required >
+							<label for="file-5">
+								<figure>
+									<img src="../static/images/upload.png" class="uploadimg">
+								</figure>
+								Upload Your Image Here
+							</label>
+							<br>
+							<font size="+1">
+								<strong>
+									Your Image:
+								</strong>
+							</font>
+							<img id="viewimg" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="lgscontent">
+						<div class="lgsbox">
+							<h3 style="text-align: left;">
+								Select Languages of Your File:
+							</h3>
+							<div class="form-group">
+			                    <select name="lgselect" class="mul-select lgselectbox" required>
+			                        <option value="eng+enm">English</option>
+			                        <option value="spa+spa_old">Spanish</option>
+			                        <option value="deu_frak+deu">German</option>
+			                        <option value="por">Portuguese</option>
+			                    </select>
+			                </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row" style="padding-bottom: 20px;">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<center>
+						<input type="submit" name="Upload" class="uploadbtn" value="Submit">
+					</center>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</form>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="pcontent">
+						<div class="pbox">
+							<h3>How to convert image to text?</h3>
+							<ol>
+								<li>Upload an image, e.g a PNG, JPG, JPEG, GIF, TIFF, BMP, PNM or JFIF.</li>
+								<li>Select the language of the text in your image.</li>
+								<li>After clicking on "Upload" you can check your extracted text</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="pcontent">
+						<div class="pbox">
+							<h4>Free Service</h4>
+							<p>
+								This OCR service is free for "Guest" users (without registration).
+							</p>
+							<h4>Use OCR online</h4>
+							<p>
+								To extract text and characters from scanned PDF documents (including multipage files), photos and digital camera captured images.
+							</p>
+							<h4>Multiple language support</h4>
+							<p>
+								The image-to-text ocr provides multilingual support. It can translate images into text in more than 5 languages.
+							</p>
+							<h4>Copy to clipboard</h4>
+							<p>
+								You can copy the converted text to the clipboard and paste it into the desired file or directory.
+							</p>
+							<h4>Download text file</h4>
+							<p>
+								Data can be lost or misplaced if not saved appropriately. You can directly download converted text as a file instead of copying the text.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="row footer">
+			<div class="col-md-12">
+			<hr class="line">
+				<center>
+					Designed and Developed By <b>Chaw Thiri Soe</b> (Edinburgh Napier University)
+				</center>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var loadFile = function(event) {
+		var output = document.getElementById('viewimg');
+		output.src = URL.createObjectURL(event.target.files[0]);
+		output.onload = function() {
+			URL.revokeObjectURL(output.src)
+		}
+	};
+	$(document).ready(function(){
+    	$(".mul-select").select2({
+            placeholder: "Select Languages",
+            tags: true,
+            tokenSeparators: ['/',',',';'," "] 
+        });
+    })
+</script>

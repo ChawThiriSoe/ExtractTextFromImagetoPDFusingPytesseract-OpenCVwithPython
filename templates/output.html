@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Essential Script and Link -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Essential Scrip and link -->
+
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+	<!-- Style for selectbox -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+
+
+	<title>Convert Image to Text</title>
+</head>
+<body>
+	<div class="container-fluid main">
+		<div class="row logorow">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1 class="logo">CIT</h1>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<hr class="line">
+		<div class="row">
+			<div class="col-md-11">
+				<h2 class="header1">
+					<center>
+						{% if msg %}
+							{{msg}}
+						{% endif %}
+					</center>
+				</h2>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="resultcontent">
+					<div class="resultbox">
+						<div class="row">
+							<div class="col-md-3">
+								{% if img_file %}
+				                    <b> IMG: <b> <br><br>
+				                    <img src="{{img_file}}" width="50%" loading />
+				                {% endif%}
+							</div>
+							<div class="col-md-9">
+								<div class="row">
+									{% if not extracted_text %}
+									<b style="text-align: center;"> No text is not found from your image!! Please try with another image again.<b>
+					                {% else %}
+					                <p>
+				                        <b> Extracted Text Before Post-Processing: <b> <br><br>
+				                        <textarea rows="8" cols="80%" class="form-control extext" disabled>
+				                        {{extracted_text}}
+				                        </textarea>
+				                    </p>
+					                {% endif %}
+								</div>
+								<div class="row">
+									{% if not post_text %}
+				                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="col-md-2">
+					<form action="/index" method="GET">
+						<input type="submit" name="startagain" value="Go For Another Image &#8674; &#8674; &#8674;" class="startbtn">
+	        		</form>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row footer">
+			<div class="col-md-12">
+			<hr class="line">
+				<center>
+					Designed and Developed By <b>Chaw Thiri Soe</b> (Edinburgh Napier University)
+				</center>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+					                {% else %}
+					                <p>
+				                        <b> Extracted Text After Post-Processing: <b> <br><br>
+				                        <textarea rows="8" cols="80%" class="form-control extext" disabled>
+				                        {{post_text}}
+				                        </textarea>
+				                    </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="header1" style="text-align: left;">
+					Download Option:
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="header2" style="text-align: left;">
+					Before Post-Processing:
+				</h3>
+			</div>
+		</div>
+		<form action="/output" method="POST">
+			<div class="row" style="padding-bottom: 20px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<input type="submit" name="copytxtbe" value="Copy to Clipboard" class="downloadbtn">
+					<input type="hidden" name="extractext" value="{{extracted_text}}">
+					<input type="hidden" name="img" value="{{img_file}}">
+					<input type="hidden" name="lgselect" value="{{lg_select}}">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="txtdownloadbe" value="Text File (.txt)" class="downloadbtn">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="docxdownloadbe" value="Word File (.docx)" class="downloadbtn">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="pdfdownloadbe" value="PDF File (.pdf)" class="downloadbtn">
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="header2" style="text-align: left;">
+						After Post-Processing:
+					</h3>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom: 20px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<input type="submit" name="copytxtaf" value="Copy to Clipboard" class="downloadbtn">
+					<input type="hidden" name="posttext" value="{{post_text}}">
+					<input type="hidden" name="img" value="{{img_file}}">
+					<input type="hidden" name="lgselect" value="{{lg_select}}">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="txtdownloadaf" value="Text File (.txt)" class="downloadbtn">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="docxdownloadaf" value="Word File (.docx)" class="downloadbtn">
+				</div>
+				<div class="col-md-2">
+					<input type="submit" name="pdfdownloadaf" value="PDF File (.pdf)" class="downloadbtn">
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="col-md-2">
+					<form action="/index" method="GET">
+						<input type="submit" name="startagain" value="Go For Another Image &#8674; &#8674; &#8674;" class="startbtn">
+	        		</form>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row footer">
+			<div class="col-md-12">
+			<hr class="line">
+				<center>
+					Designed and Developed By <b>Chaw Thiri Soe</b> (Edinburgh Napier University)
+				</center>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+{% endif %}
